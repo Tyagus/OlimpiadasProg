@@ -1,0 +1,96 @@
+Problema C - Uma noite na Ópera
+
+O Fábio tem um emprego de sonho: é administrador da Ópera Noturna Internacional. Como administrador, tem várias tarefas que lhe agradam muito, como escolher as óperas que serão representadas e supervisionar os seus ensaios. Infelizmente, o seu emprego também lhe exige algumas tarefas menos divertidas e uma delas é coordenar a ocupação dos lugares dos espetadores.
+
+Os lugares no edifício estão dispostos numa linha de N assentos. O trabalho do Fábio passa por reservar e escolher lugares para as pessoas se sentarem. Porém, normalmente as pessoas compram bilhetes em grupo e por isso esperam sentar-se em conjunto, ou seja, em lugares contíguos da linha de lugares. Assim, para desempenhar as suas funções corretamente, o Fábio precisa de saber a toda a hora qual o maior grupo de pessoas que se podem sentar juntas.
+
+Num mundo perfeito esta era toda a informação sobre o problema, mas a ópera é frequentada por todo o tipo de arruaceiros e rufias, o que faz com que seja muito frequente que se partam assentos. Quando um assento se parte, ele fica inutilizável, ou seja, ninguém se pode sentar lá. Além disso, frequentemente a equipa de manutenção repara assentos que foram partidos.
+
+Isto complica bastante o trabalho do Fábio, que tem de estar sempre a apontar quais os lugares partidos e os funcionais de modo a saber onde pode sentar os espetadores da ópera. Até recentemente isto era uma tarefa fácil, mas nos últimos anos o edifício tem expandido e o número de lugares tem vindo a aumentar, tornando impossível manter a conta de todos os lugares. Assim, o Fábio precisa da tua ajuda para saber qual o maior grupo de pessoas que se podem sentar juntas!
+
+O Problema
+
+Dada uma configuração inicial de N assentos e um conjunto de Q alterações da configuração (assentos que se partem ou arranjam), determinar o maior tamanho que um grupo de pessoas pode ter para se sentar em conjunto em cada momento.
+
+Input
+
+Na primeira linha vêm dois inteiros, N e Q, separados por um espaço, que representam o número total de assentos e o número de alterações a efetuar aos assentos.
+
+Segue-se uma linha com N dígitos de 0 ou 1 contíguos, que representam o estado inicial dos assentos. O i-ésimo dígito representa o estado do i-ésimo assento. Um valor de 0 representa um assento utilizável, um valor de 1 representa um assento partido e por isso inutilizável.
+
+Seguem-se Q linhas com um dos seguintes 3 formatos:
+
+'P k': que indica que o k-ésimo assento (entre 1 e N) se partiu (é garantido que anteriormente não estava partido);
+'A k': que indica que o k-ésimo assento (entre 1 e N) foi arranjado (é garantido que anteriormente estava partido);
+'Q': que pergunta qual o maior tamanho que um grupo de pessoas pode ter para se sentar em conjunto nesse momento;
+Output
+
+Para cada linha de alterações do tipo 'Q', um inteiro que representa o maior tamanho que um grupo de pessoas pode ter para se sentar em conjunto.
+
+Restrições
+
+São garantidos os seguintes limites em todos os casos de teste que irão ser colocados ao programa:
+
+1 = N = 1 000 000	     	Número de assentos
+1 = Q = 1 000 000	     	Número de alterações
+1 = k = N	     	Assento a mudar
+Os casos de teste deste problema estão organizados em 4 grupos com restrições adicionais diferentes:
+
+Grupo	Número de Pontos	Restrições adicionais
+1	20	1 = N = 1 000, 1 = Q = 1 000
+2	10	1 = Q = 10
+3	20	Apenas existirão operações de arranjar assentos (do tipo 'A')
+4	30	1 = N = 100 000, 1 = Q = 100 000
+5	20	-
+Input do Exemplo 1
+
+5 7
+00000
+Q
+P 4
+Q
+P 3
+A 4
+P 2
+Q
+Output do Exemplo 1
+
+5
+3
+2
+Explicação do Exemplo 1
+
+Inicialmente o estados dos assentos é o seguinte (a seta indica a posição onde se pode colocar o maior grupo de pessoas):
+
+
+No passo seguinte, o assento número 4 é partido, obtendo-se o seguinte estado:
+
+
+Agora, é o assento número 3 que é partido, obtendo-se o seguinte estado:
+
+
+No passo seguinte, o assento número 4 é arranjado, obtendo-se o seguinte estado (é de notar que agora existem duas possibilidades para o maior grupo):
+
+
+Finalmente, o assento número 2 é partido, obtendo-se o estado final de:
+
+
+Input do Exemplo 2
+
+10 9
+1010101010
+Q
+A 1
+A 3
+Q
+P 2
+Q
+A 5
+P 6
+Q
+Output do Exemplo 2
+
+1
+4
+2
+3
