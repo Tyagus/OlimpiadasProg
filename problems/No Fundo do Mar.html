@@ -1,0 +1,600 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://www.dcc.fc.up.pt/oni/problemas/2016/final/probB.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>No Fundo do Mar</title>
+    
+  <script type="text/javascript">try {
+window.AG_onLoad = function(func) { if (window.addEventListener) { window.addEventListener('DOMContentLoaded', func); } };
+window.AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+window.AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+window.AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+var AG_removeParent = function(el, fn) { while (el && el.parentNode) { if (fn(el)) { el.parentNode.removeChild(el); return; } el = el.parentNode; } };
+var AG_onLoad=function(func){if(document.readyState==="complete"||document.readyState==="interactive")func();else if(document.addEventListener)document.addEventListener("DOMContentLoaded",func);else if(document.attachEvent)document.attachEvent("DOMContentLoaded",func)};
+var AG_removeElementById = function(id) { var element = document.getElementById(id); if (element && element.parentNode) { element.parentNode.removeChild(element); }};
+var AG_removeElementBySelector = function(selector) { if (!document.querySelectorAll) { return; } var nodes = document.querySelectorAll(selector); if (nodes) { for (var i = 0; i < nodes.length; i++) { if (nodes[i] && nodes[i].parentNode) { nodes[i].parentNode.removeChild(nodes[i]); } } } };
+var AG_each = function(selector, fn) { if (!document.querySelectorAll) return; var elements = document.querySelectorAll(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+window.uabInject = function() {};
+} catch (ex) { console.error('Error executing AG js: ' + ex); }</script></head>
+  <body bgcolor="white">
+
+    <h1><font color="blue">Problema B - No Fundo do Mar</font></h1>
+
+    <p><img src="./No Fundo do Mar_files/probB.png" alt="" align="right" border="1">O Vladimir
+    está a aprender mergulho em apneia (sem garrafa de oxigénio). Um dos seus exercícios é
+    deixar cair um objeto, esperar que ele lentamente chegue ao fundo
+    do mar e depois mergulhar para apanhá-lo. O Vladimir pôs-se a
+    pensar que se conhecesse com algum pormenor o fundo do mar,
+    poderia determinar a altura mais profunda onde o objeto pode
+    cair, e com isso estimar o tempo máximo em qu tem de suster a
+    respiração.</p>
+      
+    <p>O fundo do mar pode ser modelado como uma matriz onde cada
+      posição tem um número inteiro representando a sua altitude. A
+      figura seguinte ilustra um possível fundo com 4 linhas e 6
+      colunas e a respetiva matriz de altitudes:</p>
+
+      <table border="0">
+	<tbody><tr>
+	  <td>
+	    <img src="./No Fundo do Mar_files/b1.png">   
+	  </td>
+	  <td>&nbsp;</td>
+	  <td valign="bottom">
+   <table border="0" bgcolor="black" width="150">
+      <tbody><tr bgcolor="white">
+	<td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">3</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center">2</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">4</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">1</td><td align="center">0</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">2</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td>
+      </tr>
+    </tbody></table>
+	    
+	  </td>
+	</tr>
+      </tbody></table>	
+      
+      <p>O objeto que é atirado ao fundo do mar pode ser modelado
+      como um retângulo que cai sempre na mesma orientação, com os
+      seus lados paralelos aos lados da matriz (sem admitir
+      rotações). O objeto é rígido e mal encontra um obstáculo fica
+      imóvel, parando de descer. Sabemos portanto que quando um
+      retângulo cai, fica imobilizado no ponto de maior altitude da
+      área que cobre. As figuras seguintes ilustram 3 possíveis sítios
+      onde um retângulo de 2 linhas por 3 colunas podia cair no fundo
+      do mar mostrado anteriormente, ilustrando em que altura ficava
+      imobilizado em cada caso (igual a um mais a máxima altitude da área correspondente):</p>
+
+      <table>
+	<tbody><tr>
+	  <td valign="bottom"><img src="./No Fundo do Mar_files/b2.png"></td>
+	  <td>&nbsp; &nbsp;</td>
+	  <td valign="bottom"><img src="./No Fundo do Mar_files/b3.png"></td>
+	  <td>&nbsp; &nbsp;</td>
+	  <td valign="bottom"><img src="./No Fundo do Mar_files/b4.png"></td>
+	</tr>
+	<tr height="5" <="" tr="">
+	</tr><tr>
+	  <td valign="bottom" align="center">
+
+   <table border="0" bgcolor="black" width="150">
+      <tbody><tr bgcolor="white">
+	<td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">3</td><td align="center" bgcolor="#8CF3F8">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center">2</td><td align="center">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">4</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">1</td><td align="center">0</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">2</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td>
+      </tr>
+    </tbody></table>
+	    
+	  </td>
+	  <td>&nbsp; &nbsp;</td>
+	  <td valign="bottom" align="center">
+
+   <table border="0" bgcolor="black" width="150">
+      <tbody><tr bgcolor="white">
+	<td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">3</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center">2</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">4</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center">1</td><td align="center">0</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center" bgcolor="#8CF3F8">2</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td>
+      </tr>
+   </tbody></table>
+   
+	  </td>
+	  <td>&nbsp; &nbsp;</td>
+	  <td valign="bottom" align="center">
+
+   <table border="0" bgcolor="black" width="150">
+      <tbody><tr bgcolor="white">
+	<td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">3</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center">2</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center">4</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">1</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">2</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td>
+      </tr>
+    </tbody></table>
+
+	  </td>
+	</tr>
+
+	<tr>
+	  <td valign="bottom" align="center">Altura = 5</td>
+	  <td>&nbsp; &nbsp;</td>
+	  <td valign="bottom" align="center">Altura = 3</td>
+	  <td>&nbsp; &nbsp;</td>
+	  <td valign="bottom" align="center">Altura = 2</td>
+	</tr>
+	<tr height="5" <="" tr="">
+	
+	    </tr></tbody></table>
+
+   <p>Quando está à superfície, o Vladimir não consegue ver o fundo do
+   mar, e por isso não sabe em que posição exata vai atirar o
+   retângulo. O que ele gostava mesmo de saber era qual a profundidade
+   máxima (ou seja, a altura mínima) onde o objeto pode cair. Para o
+   caso atrás ilustrado, o pior caso possível é precisamente o de
+   altura 2. Todas os outros sítios onde o retângulo pode cair dariam
+   origem a uma altura maior ou igual a 2. Tens de ajudar o Vladimir!
+   Sabendo as dimensões de alguns objetos que ele costuma atirar ao
+   mar, até onde pode cair cada um deles?
+		          
+    </p><h2><font color="blue">O Problema</font></h2>
+
+    <p>Dada um matriz de <b>L</b> linhas por <b>C</b> colunas com
+      inteiros representando as altitudes de cada ponto do fundo do
+      mar, e um conjunto de <b>R</b> retângulos, a tua tarefa é
+      descobrir para cada um deles qual a altura mínima onde podem
+      ficar imobilizados.
+ 
+    </p><h2><font color="blue">Input</font></h2>
+
+    <p>Na primeira linha vêm dois inteiros <b>L</b> e <b>C</b>,
+      indicando o número de linhas e colunas da matriz de altitudes do
+      fundo do mar. Seguem-se <b>L</b> linhas, cada uma com <b>C</b>
+      inteiros A<sub>ij</sub> representando a matriz em si.
+
+      </p><p>Depois de matriz vem uma linha com um único inteiro <b>R</b>
+      representando o número de diferentes retângulos a
+      considerar. Seguem-se <b>R</b> linhas, cada uma com dois
+      inteiros <b>RL<sub>i</sub></b> e <b>RC<sub>i</sub></b>
+      representando respetivamente o número de linhas e colunas do
+      retângulo.
+
+    </p><h2><font color="blue">Output</font></h2>
+
+    <p>O output deve conter <b>R</b> linhas, uma para cada retângulo,
+    contendo um inteiro indicando a altura mínima onde podem cair, como atrás explicado.
+
+    </p><h2><font color="blue">Restrições</font></h2>
+
+    <p>São garantidos os seguintes limites em todos os casos de teste que
+      irão ser colocados ao programa:</p>
+
+    <table>
+      <tbody><tr>
+        <td><b>1 ≤ L, C ≤ 900</b></td>
+        <td>&nbsp; &nbsp; &nbsp;</td>
+        <td>Número de linhas e colunas do fundo do mar</td>
+      </tr>
+      <tr>
+        <td><b>0 ≤ A<sub>ij</sub> ≤ 10<sup>6</sup></b></td>
+        <td>&nbsp; &nbsp; &nbsp;</td>
+        <td>Altura de cada posição do fundo do mar</td>
+      </tr>
+      <tr>
+        <td><b>1 ≤ R ≤ 10</b></td>
+        <td>&nbsp; &nbsp; &nbsp;</td>
+        <td>Número de retângulos</td>
+      </tr>
+      <tr>
+        <td><b>1 ≤ RL<sub>i</sub> ≤ L</b>, <b>1 ≤ RC<sub>i</sub> ≤ C</b></td>
+        <td>&nbsp; &nbsp; &nbsp;</td>
+        <td>Dimensões dos retângulos a considerar</td>
+      </tr>
+    </tbody></table>
+
+    <p>Os casos de teste deste problema estão organizados em 4 grupos
+    com restrições adicionais diferentes:</p>
+
+    <table bgcolor="black" cellspacing="1" cellpadding="2">
+      <tbody><tr bgcolor="white">
+        <th>Grupo</th>
+        <th>Nº de Pontos</th>
+        <th align="left">Restrições adicionais</th>
+      </tr>
+      <tr bgcolor="white">
+        <td>1</td>
+        <td>25</td>
+        <td>L, C ≤ 20, A<sub>ij</sub> ≤ 100</td>
+      </tr>
+      <tr bgcolor="white">
+        <td>2</td>
+        <td>25</td>
+	<td>L, C ≤ 200</td>
+      </tr>
+      <tr bgcolor="white">
+        <td>3</td>
+        <td>25</td>
+	<td>L, C ≤ 600</td>
+      </tr>
+      <tr bgcolor="white">
+        <td>4</td>
+        <td>25</td>
+        <td><i>(nenhuma restrição adicional)</i></td>
+      </tr>
+
+    </tbody></table>
+
+    <h2><font color="blue">Exemplo de Input 1</font></h2>
+<pre>4 6
+0 0 0 0 3 0
+0 2 0 0 0 4
+0 0 0 1 0 0
+2 0 0 0 0 0
+4
+2 3
+1 4
+2 4
+4 5
+</pre>
+
+<h2><font color="blue">Exemplo de Output 1</font></h2>
+<pre>2
+1
+2
+4
+</pre>
+
+<h2><font color="blue">Explicação do Exemplo 1</font></h2>
+
+<p>A figura seguinte ilustra cada um dos 4 retângulos dados, indicando uma posição possível onde é atingida a altura mínima.</p>
+
+      <table border="0">
+	<tbody><tr>
+	  <td>
+
+   <table border="0" bgcolor="black" width="150">
+      <tbody><tr bgcolor="white">
+	<td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">3</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center">2</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center">4</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">1</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">2</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td>
+      </tr>
+    </tbody></table>    
+	    
+	  </td>
+	  <td>&nbsp;</td>
+	  <td valign="bottom">
+
+   <table border="0" bgcolor="black" width="150">
+      <tbody><tr bgcolor="white">
+	<td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center">3</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center">2</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">4</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">1</td><td align="center">0</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">2</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td>
+      </tr>
+    </tbody></table>	    
+	    
+	  </td>
+
+	  <td>&nbsp;</td>
+	  <td valign="bottom">
+
+   <table border="0" bgcolor="black" width="150">
+      <tbody><tr bgcolor="white">
+	<td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">3</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center">2</td><td align="center">0</td><td align="center">0</td><td align="center">0</td><td align="center">4</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">1</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center">2</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center">0</td>
+      </tr>
+    </tbody></table>	    
+	    
+	  </td>
+	  <td>&nbsp;</td>
+	  <td valign="bottom">
+
+   <table border="0" bgcolor="black" width="150">
+      <tbody><tr bgcolor="white">
+	<td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">3</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">2</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center">4</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">1</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center">0</td>
+      </tr>
+      <tr bgcolor="white">
+	<td align="center" bgcolor="#8CF3F8">2</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center" bgcolor="#8CF3F8">0</td><td align="center">0</td>
+      </tr>
+    </tbody></table>	    
+	    
+	  </td>
+	  
+	</tr>
+
+	<tr>
+	  <td valign="bottom" align="center">Altura = 2</td>
+	  <td>&nbsp; &nbsp;</td>
+	  <td valign="bottom" align="center">Altura = 1</td>
+	  <td>&nbsp; &nbsp;</td>
+	  <td valign="bottom" align="center">Altura = 2</td>
+	  <td>&nbsp; &nbsp;</td>
+	  <td valign="bottom" align="center">Altura = 4</td>
+		</tr>
+	<tr>
+	  <td valign="bottom" align="center">[retângulo 2x3]</td>
+	  <td>&nbsp; &nbsp;</td>
+	  <td valign="bottom" align="center">[retângulo 1x4]</td>
+	  <td>&nbsp; &nbsp;</td>
+	  <td valign="bottom" align="center">[retângulo 2x4]</td>
+	  <td>&nbsp; &nbsp;</td>
+	  <td valign="bottom" align="center">[retângulo 4x5]</td>
+	</tr>
+
+      </tbody></table>	
+
+
+    <h2><font color="blue">Exemplo de Input 2</font></h2>
+    <pre>5 8
+53 70 57 97 32 36 23 39
+81 44 65 66 80 51 78 67
+32 42 22 9 80 20 53 37
+74 95 82 8 78 9 9 83
+31 18 80 63 54 4 54 87
+3
+2 3
+3 2
+2 4
+</pre>
+
+<h2><font color="blue">Exemplo de Output 2</font></h2>
+<pre>67
+55
+79
+</pre>
+
+<h2><font color="blue">Explicação do Exemplo 2</font></h2>
+
+<p>A figura seguinte ilustra cada um dos 3 retângulos dados, indicando uma posição possível onde é atingida a altura mínima.</p>
+
+<table>
+  <tbody><tr>
+    <td>
+  
+<table border="0" bgcolor="black" width="150">
+<tbody><tr bgcolor="white">
+<td align="center">53</td>
+<td align="center">70</td>
+<td align="center">57</td>
+<td align="center">97</td>
+<td align="center">32</td>
+<td align="center">36</td>
+<td align="center">23</td>
+<td align="center">39</td>
+</tr>
+<tr bgcolor="white">
+<td align="center">81</td>
+<td align="center" bgcolor="#8CF3F8">44</td>
+<td align="center" bgcolor="#8CF3F8">65</td>
+<td align="center" bgcolor="#8CF3F8">66</td>
+<td align="center">80</td>
+<td align="center">51</td>
+<td align="center">78</td>
+<td align="center">67</td>
+</tr>
+<tr bgcolor="white">
+<td align="center">32</td>
+<td align="center" bgcolor="#8CF3F8">42</td>
+<td align="center" bgcolor="#8CF3F8">22</td>
+<td align="center" bgcolor="#8CF3F8">9</td>
+<td align="center">80</td>
+<td align="center">20</td>
+<td align="center">53</td>
+<td align="center">37</td>
+</tr>
+<tr bgcolor="white">
+<td align="center">74</td>
+<td align="center">95</td>
+<td align="center">82</td>
+<td align="center">8</td>
+<td align="center">78</td>
+<td align="center">9</td>
+<td align="center">9</td>
+<td align="center">83</td>
+</tr>
+<tr bgcolor="white">
+<td align="center">31</td>
+<td align="center">18</td>
+<td align="center">80</td>
+<td align="center">63</td>
+<td align="center">54</td>
+<td align="center">4</td>
+<td align="center">54</td>
+<td align="center">87</td>
+</tr>
+</tbody></table>
+
+    </td>
+    <td>&nbsp;</td>
+    <td>
+
+<table border="0" bgcolor="black" width="150">
+<tbody><tr bgcolor="white">
+<td align="center">53</td>
+<td align="center">70</td>
+<td align="center">57</td>
+<td align="center">97</td>
+<td align="center">32</td>
+<td align="center">36</td>
+<td align="center">23</td>
+<td align="center">39</td>
+</tr>
+<tr bgcolor="white">
+<td align="center">81</td>
+<td align="center">44</td>
+<td align="center">65</td>
+<td align="center">66</td>
+<td align="center">80</td>
+<td align="center">51</td>
+<td align="center">78</td>
+<td align="center">67</td>
+</tr>
+<tr bgcolor="white">
+<td align="center">32</td>
+<td align="center">42</td>
+<td align="center">22</td>
+<td align="center">9</td>
+<td align="center">80</td>
+<td align="center" bgcolor="#8CF3F8">20</td>
+<td align="center" bgcolor="#8CF3F8">53</td>
+<td align="center">37</td>
+</tr>
+<tr bgcolor="white">
+<td align="center">74</td>
+<td align="center">95</td>
+<td align="center">82</td>
+<td align="center">8</td>
+<td align="center">78</td>
+<td align="center" bgcolor="#8CF3F8">9</td>
+<td align="center" bgcolor="#8CF3F8">9</td>
+<td align="center">83</td>
+</tr>
+<tr bgcolor="white">
+<td align="center">31</td>
+<td align="center">18</td>
+<td align="center">80</td>
+<td align="center">63</td>
+<td align="center">54</td>
+<td align="center" bgcolor="#8CF3F8">4</td>
+<td align="center" bgcolor="#8CF3F8">54</td>
+<td align="center">87</td>
+</tr>
+</tbody></table>
+
+    </td>
+    <td>&nbsp;</td>
+    <td>
+
+
+<table border="0" bgcolor="black" width="150">
+<tbody><tr bgcolor="white">
+<td align="center">53</td>
+<td align="center">70</td>
+<td align="center">57</td>
+<td align="center">97</td>
+<td align="center">32</td>
+<td align="center">36</td>
+<td align="center">23</td>
+<td align="center">39</td>
+</tr>
+<tr bgcolor="white">
+<td align="center">81</td>
+<td align="center">44</td>
+<td align="center">65</td>
+<td align="center">66</td>
+<td align="center">80</td>
+<td align="center">51</td>
+<td align="center">78</td>
+<td align="center">67</td>
+</tr>
+<tr bgcolor="white">
+<td align="center">32</td>
+<td align="center">42</td>
+<td align="center">22</td>
+<td align="center">9</td>
+<td align="center">80</td>
+<td align="center">20</td>
+<td align="center">53</td>
+<td align="center">37</td>
+</tr>
+<tr bgcolor="white">
+<td align="center">74</td>
+<td align="center">95</td>
+<td align="center">82</td>
+<td align="center" bgcolor="#8CF3F8">8</td>
+<td align="center" bgcolor="#8CF3F8">78</td>
+<td align="center" bgcolor="#8CF3F8">9</td>
+<td align="center" bgcolor="#8CF3F8">9</td>
+<td align="center">83</td>
+</tr>
+<tr bgcolor="white">
+<td align="center">31</td>
+<td align="center">18</td>
+<td align="center">80</td>
+<td align="center" bgcolor="#8CF3F8">63</td>
+<td align="center" bgcolor="#8CF3F8">54</td>
+<td align="center" bgcolor="#8CF3F8">4</td>
+<td align="center" bgcolor="#8CF3F8">54</td>
+<td align="center">87</td>
+</tr>
+</tbody></table>
+
+  </td></tr>
+  <tr>
+    <td valign="bottom" align="center">Altura = 67</td>
+    <td>&nbsp; &nbsp;</td>
+    <td valign="bottom" align="center">Altura = 55</td>
+    <td>&nbsp; &nbsp;</td>
+    <td valign="bottom" align="center">Altura = 79</td>
+  </tr>
+  <tr>
+    <td valign="bottom" align="center">[retângulo 2x3]</td>
+    <td>&nbsp; &nbsp;</td>
+    <td valign="bottom" align="center">[retângulo 3x2]</td>
+    <td>&nbsp; &nbsp;</td>
+    <td valign="bottom" align="center">[retângulo 2x4]</td>
+  </tr>
+  
+  
+</tbody></table>
+
+
+    <hr size="2">
+    <center><b>Final Nacional das ONI'2016</b><br>
+      Departamento de Ciência de Computadores<br>
+      Faculdade de Ciências da Universidade do Porto<br>
+      <i>(22 de Abril de 2016)</i></center>
+    <hr size="2">
+    
+  
+
+</body></html>
